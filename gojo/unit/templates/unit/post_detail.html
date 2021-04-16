@@ -7,15 +7,20 @@
                 {{ post.published_date }}
             </div>
         {% else %}
-            {%if user.is_authenticted %}
-                <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>        
+            {% if user.is_authenticated %}
+                <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
             {% endif %}
         {% endif %}
         {% if user.is_authenticated %}
             <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
             <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
         {% endif %}
-        <h2>{{ post.p_no }}</h2>
+        
+        <h2>製作番号：{{ post.p_no }}</h2>
+        <h2>手配番号：{{ post.o_no }}</h2>
+        <h2>製 品 名：{{ post.c_name }}</h2>
+        <h2>納　　期：{{ post.c_date|date:'Y/m/d' }}</h2>
+        <h2>購入納期：{{ post.購入納期|date:'Y/m/d' }}</h2>
         <p>{{ post.text|linebreaksbr }}</p>
     </div>
 {% endblock %}

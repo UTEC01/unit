@@ -4,12 +4,12 @@
     {% for post in posts %}
         <div class="post">
             <div class="date">
-                <p>published: {{ post.published_date }}</p>
+             
             </div>
-            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.p_no }}</a></h2>
-            <p>{{ post.o_no|linebreaksbr }}</p>
-            <p>{{ post.c_name|linebreaksbr }}</p>
-        
+            
+                <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.p_no }}</a></h2>
+                <p>{{ post.o_no|linebreaksbr }} {{ post.c_name|linebreaksbr }} 　納期:{{ post.c_date }}--購入:{{ post.購入納期 }}</p>
+            
         </div>
     {% endfor %}
 {% endblock %}

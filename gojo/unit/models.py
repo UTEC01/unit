@@ -5,13 +5,15 @@ from django.utils import timezone
 
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    p_no = models.CharField(max_length=20)
+    p_no = models.CharField(max_length=40)
     o_no = models.CharField(max_length=20)
     c_name = models.CharField(max_length=200)
-    text = models.TextField()
+    text = models.TextField(blank=True, null=True)
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
     c_date = models.DateTimeField(blank=True, null=True)
+    購入納期 = models.DateTimeField(blank=True, null=True)
+    出荷日 = models.DateField(blank=True, null=True)
 
     def publish(self):
         self.published_date = timezone.now()

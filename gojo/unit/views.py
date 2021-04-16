@@ -4,10 +4,13 @@ from .models import Post
 from .forms import PostForm
 from django.shortcuts import redirect
 from django.shortcuts import render, get_object_or_404
+from django.db.models import Q
 
 # Create your views here.
 def post_list(request):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    posts = Post.objects.filter(published_date__lte=timezone.now())\
+        .exclude(出荷日__lte=timezone.now() )\
+        .order_by('c_date')
     return render(request, 'unit/post_list.html', {'posts': posts})
 
 def post_detail(request, pk):
@@ -42,7 +45,8 @@ def post_edit(request, pk):
     return render(request, 'unit/post_edit.html', {'form': form})
 
 def post_draft_list(request):
-    posts = Post.objects.filter(published_date__isnull=True).order_by('created_date')
+    posts = Post.objects.filter(Q(published_date__isnull=True) \
+        | Q(出荷日__lte=timezone.now())).order_by('p_no')
     return render(request, 'unit/post_draft_list.html', {'posts': posts})
 
 def post_publish(request, pk):
