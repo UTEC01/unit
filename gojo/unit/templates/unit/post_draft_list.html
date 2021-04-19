@@ -4,10 +4,11 @@
     {% if user.is_authenticated %}
         {% for post in posts %}
             <div class="post">
-                <p class="date">created: {{ post.created_date|date:'d-m-Y' }}</p>
-                <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.p_no }}</a></h1>
-                <p>{{ post.text|truncatechars:200 }}</p>
+                <!-- <p class="date"></p>## -->
+                <h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.p_no }}</a></h3>
+                <p>{{ post.o_no }}//{{ post.text|truncatechars:200 }}</p>
             </div>
         {% endfor %}
     {% endif %}
+    {% include 'unit/page.html' %}
 {% endblock %}

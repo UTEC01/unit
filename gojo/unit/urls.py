@@ -10,4 +10,5 @@ urlpatterns = [
     path('post/<pk>/publish/', views.post_publish, name='post_publish'),
     path('post/<pk>/remove/', views.post_remove, name='post_remove'),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('shipped/', views.post_shipped_list, name='post_shipped_list')
 ]

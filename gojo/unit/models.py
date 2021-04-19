@@ -11,8 +11,8 @@ class Post(models.Model):
     text = models.TextField(blank=True, null=True)
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
-    c_date = models.DateTimeField(blank=True, null=True)
-    購入納期 = models.DateTimeField(blank=True, null=True)
+    c_date = models.DateField(blank=True, null=True)
+    購入納期 = models.DateField(blank=True, null=True)
     出荷日 = models.DateField(blank=True, null=True)
 
     def publish(self):
