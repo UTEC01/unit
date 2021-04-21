@@ -7,7 +7,7 @@
              
             </div>
             
-                <h4><a href="{% url 'post_detail' pk=post.pk %}">{{ post.p_no }}</a></h4>
+                <h4><a href="{% url 'post_detail' pk=post.pk %}">{{ post.p_no }}</a> //{{ post.o_no }}</h4>
                 <p>出荷日：{{ post.出荷日 }}--{{ post.o_no|linebreaksbr }} {{ post.c_name|linebreaksbr }} 　納期:{{ post.c_date }}</p>
             
         </div>
