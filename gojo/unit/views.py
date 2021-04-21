@@ -98,7 +98,7 @@ def search_ex1(request, queryset):
         else:
             posts_ret = posts.filter(p_no__icontains=q_word)
     elif q_word1:
-        posts_ret = posts.filter(p_no__icontains=q_word1)
+        posts_ret = posts.filter(o_no__icontains=q_word1)
     else:
         posts_ret = posts
     return posts_ret
