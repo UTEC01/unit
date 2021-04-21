@@ -15,11 +15,11 @@ class UnitResource(ModelResource):
     #購入納期 = Field(attribute='購入納期', column_name='購入納期ｔ')
     class Meta:
         model=Post
-        import_order = ('p_no', 'o_no', 'c_name', 'c_date', 'text', '購入納期')
+        import_order = ('p_no', 'o_no', 'c_name', 'c_date', 'text', 'published_date', '購入納期', '出荷日')
         import_id_fields = ['p_no']
 
 class UnitAdmin(ImportMixin, admin.ModelAdmin):
-    list_display = ('p_no', 'o_no', 'c_name', 'c_date', 'text', '購入納期')
+    list_display = ('p_no', 'o_no', 'c_name', 'c_date', 'text', 'published_date', '購入納期', '出荷日')
     resource_class = UnitResource
     formats = [base_formats.CSV]
 

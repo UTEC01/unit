@@ -11,9 +11,9 @@ from django.shortcuts import render
 # Create your views here.
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now())\
-        .exclude(出荷日__lte=timezone.now() )\
-        .order_by('c_date')
-    page_obj  = paginate_queryset(request, posts, 5)
+                .exclude(出荷日__lte=timezone.now() )
+    posts_a = search_ex1(request, posts).order_by('c_date') 
+    page_obj  = paginate_queryset(request, posts_a, 5)
     context = {
         'posts': page_obj.object_list,
         'page_obj': page_obj,
@@ -54,8 +54,9 @@ def post_edit(request, pk):
 
 def post_draft_list(request):
     posts = Post.objects.filter(Q(published_date__isnull=True) \
-        | Q(published_date__gte=timezone.now())).order_by('p_no')
-    page_obj  = paginate_queryset(request, posts, 5)
+        | Q(published_date__gte=timezone.now()))
+    posts_a = search_ex1(request, posts).order_by('p_no') 
+    page_obj  = paginate_queryset(request, posts_a, 5)
     context = {
         'posts': page_obj.object_list,
         'page_obj': page_obj,
@@ -64,9 +65,9 @@ def post_draft_list(request):
  
 def post_shipped_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now())\
-            .filter(出荷日__lte=timezone.now() )\
-            .order_by('p_no')
-    page_obj  = paginate_queryset(request, posts, 5)
+                .filter(出荷日__lte=timezone.now() )
+    posts_a = search_ex1(request, posts).order_by('p_no') 
+    page_obj  = paginate_queryset(request, posts_a, 5)
     context = {
         'posts': page_obj.object_list,
         'page_obj': page_obj,
@@ -86,6 +87,21 @@ def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
     return redirect('post_list')
+
+def search_ex1(request, queryset):
+    q_word = request.GET.get('query')
+    q_word1 = request.GET.get('query1')
+    posts = queryset
+    if q_word:
+        if q_word1:
+            posts_ret = posts.filter(p_no__icontains=q_word).filter(o_no__icontains=q_word1)
+        else:
+            posts_ret = posts.filter(p_no__icontains=q_word)
+    elif q_word1:
+        posts_ret = posts.filter(p_no__icontains=q_word1)
+    else:
+        posts_ret = posts
+    return posts_ret
 
 def paginate_queryset(request, queryset, count):
     """Pageオブジェクトを返す。

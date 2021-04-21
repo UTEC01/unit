@@ -14,6 +14,14 @@
                 <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
                 <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
             {% endif %}
+            <form action="" method="get">
+                <p>製作番号:
+                    <input  name="query" value="{{ request.GET.query }}" type="text">
+                   手配番号:
+                    <input  name="query1" value="{{ request.GET.query1 }}" type="text">
+                    <button type="submit">検索する</button>
+                </p>
+            </form>
             <h1><a href="/">U-TEC unit test</a></h1>
         </div>
         <div class="content container">
