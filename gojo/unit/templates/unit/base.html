@@ -23,6 +23,12 @@
                 </p>
             </form>
             <h1><a href="/">U-TEC unit test</a></h1>
+            {% if user.is_authenticated %}
+                <a href="logout" >ログアウト </a>
+            {% else %}
+                <a href="login" >ログイン </a>
+            {% endif %}
+
         </div>
         <div class="content container">
             <div class="row">
