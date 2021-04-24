@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.utils import timezone
 from .models import Post
+from .models import Minyuka
 from .forms import PostForm
 from django.shortcuts import redirect
 from django.shortcuts import render, get_object_or_404
@@ -23,7 +24,14 @@ def post_list(request):
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    return render(request, 'unit/post_detail.html', {'post': post})
+    o_no = post.o_no
+    minyus = Minyuka.objects.filter(発注番号= post.o_no)
+    context = {
+        'post': post,
+        'minyus': minyus
+    }
+    #minyu = get_object_or_404(Minyuka,発注番号 = o_no)
+    return render(request, 'unit/post_detail.html', context)
 
 def post_new(request):
     if request.method == "POST":

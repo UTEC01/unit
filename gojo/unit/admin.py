@@ -4,6 +4,7 @@ from import_export.admin import ImportMixin
 from import_export.formats import base_formats
 from import_export.fields import Field
 from .models import Post
+from .models import Minyuka
 # Register your models here.
 
 class UnitResource(ModelResource):
@@ -23,5 +24,16 @@ class UnitAdmin(ImportMixin, admin.ModelAdmin):
     resource_class = UnitResource
     formats = [base_formats.CSV]
 
-#admin.site.register(Post)
+class MinyukaResource(ModelResource):
+    class Meta:
+        model = Minyuka
+        inport_order = ('発注番号', '発注先', '納期', '個数', '読込日', '品名', 'mmm')
+        import_id_fields = ['mmm']
+
+class MinyukaAdmin(ImportMixin, admin.ModelAdmin):
+    list_display = ('発注番号', '発注先', '納期', '個数', '読込日', '品名', 'mmm')
+    resource_class = MinyukaResource
+    formats = [base_formats.CSV]
+
 admin.site.register(Post,UnitAdmin)
+admin.site.register(Minyuka,MinyukaAdmin)

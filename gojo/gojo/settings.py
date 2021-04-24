@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'unit.apps.UnitConfig',
     'import_export',
+    'accounts',
 ]
 
 MIDDLEWARE = [

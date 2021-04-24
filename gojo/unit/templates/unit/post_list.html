@@ -9,7 +9,7 @@
             </div>
             
                 <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.p_no }}</a> // {{ post.o_no }}</h2>
-                <p>納期:{{ post.c_date }}--{{ post.o_no|linebreaksbr }} {{ post.c_name|linebreaksbr }} --購入:{{ post.購入納期 }}</p>
+                <p>納期:{{ post.c_date }}--　★ {{ post.p_no }}-{{ post.o_no|linebreaksbr }} {{ post.c_name|linebreaksbr }} --購入:{{ post.購入納期 }}</p>
             
         </div>
     {% endfor %}

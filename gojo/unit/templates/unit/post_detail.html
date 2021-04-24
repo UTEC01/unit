@@ -22,5 +22,9 @@
         <h2>納　　期：{{ post.c_date|date:'Y/m/d' }}</h2>
         <h2>購入納期：{{ post.購入納期|date:'Y/m/d' }}</h2>
         <p>{{ post.text|linebreaksbr }}</p>
+        {% for minyu in minyus %}
+            {{ minyu.納期 }},●●●{{ minyu.品名 }}●,{{ minyu.個数 }}●●●,   {{ minyu.発注先 }},{{ minyu.読込日}} <br>
+        {% endfor %}
+        
     </div>
 {% endblock %}
