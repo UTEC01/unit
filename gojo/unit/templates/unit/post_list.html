@@ -3,14 +3,19 @@
 {% block content %}
 {% if user.is_authenticated %}
     {% for post in posts %}
-        <div class="post">
-            <div class="date">
-             
+        <div class="post">            
+            <div class="row">
+                <div class="col-md-2"><h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.p_no }}</a></h2></div>
+                <div class="col-md-3"><h2>{{ post.o_no }}</h2></div>
+                <div class="col-md-3"><h3>手配残：{{ post.手配残 }}</h3></div>
             </div>
-            
-                <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.p_no }}</a> // {{ post.o_no }}</h2>
-                <p>納期:{{ post.c_date }}--　★ {{ post.p_no }}-{{ post.o_no|linebreaksbr }} {{ post.c_name|linebreaksbr }} --購入:{{ post.購入納期 }}</p>
-            
+            <div class="row "  style="background:#eeeeee;">
+                <div class="col-md-2 ">納期:{{ post.c_date }}</div>
+                <div class="col-md-1">{{ post.p_no }}</div>
+                <div class="col-md-2">{{ post.o_no }}</div>
+                <div class="col-md-4">{{ post.c_name|linebreaksbr }}</div>
+                <div class="col-md-3">購入:{{ post.購入納期 }}</div>
+            </div>
         </div>
     {% endfor %}
 {% endif %}

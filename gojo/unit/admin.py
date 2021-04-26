@@ -16,22 +16,22 @@ class UnitResource(ModelResource):
     #購入納期 = Field(attribute='購入納期', column_name='購入納期ｔ')
     class Meta:
         model=Post
-        import_order = ('p_no', 'o_no', 'c_name', 'c_date', 'text', 'published_date', '購入納期', '出荷日')
+        import_order = ('p_no', 'o_no', 'c_name', 'c_date', 'text', 'published_date', '購入納期', '出荷日', '手配残')
         import_id_fields = ['p_no']
 
 class UnitAdmin(ImportMixin, admin.ModelAdmin):
-    list_display = ('p_no', 'o_no', 'c_name', 'c_date', 'text', 'published_date', '購入納期', '出荷日')
+    list_display = ('p_no', 'o_no', 'c_name', 'c_date', 'text', 'published_date', '購入納期', '出荷日', '手配残')
     resource_class = UnitResource
     formats = [base_formats.CSV]
 
 class MinyukaResource(ModelResource):
     class Meta:
         model = Minyuka
-        inport_order = ('発注番号', '発注先', '納期', '個数', '読込日', '品名', 'mmm')
+        inport_order = ('発注番号', '発注先', '納期', '個数', '読込日', '品名', 'mmm', '備考', '入荷FLG')
         import_id_fields = ['mmm']
 
 class MinyukaAdmin(ImportMixin, admin.ModelAdmin):
-    list_display = ('発注番号', '発注先', '納期', '個数', '読込日', '品名', 'mmm')
+    list_display = ('発注番号', '発注先', '納期', '個数', '読込日', '品名', 'mmm', '備考', '入荷FLG')
     resource_class = MinyukaResource
     formats = [base_formats.CSV]
 

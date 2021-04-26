@@ -14,6 +14,7 @@ class Post(models.Model):
     c_date = models.DateField(blank=True, null=True)
     購入納期 = models.DateField(blank=True, null=True)
     出荷日 = models.DateField(blank=True, null=True)
+    手配残 = models.IntegerField(blank=True, null=True)
 
     def publish(self):
         self.published_date = timezone.now()
@@ -30,6 +31,7 @@ class Minyuka(models.Model):
     読込日 = models.DateField(blank=True, null=True)
     品名 = models.CharField(blank=True, max_length=40)
     mmm = models.IntegerField(blank=True, null=True)
-    
+    備考 = models.CharField(blank=True, max_length=40)
+    入荷FLG = models.IntegerField(blank=True, null=True)
     def __str__(self):
         return self.発注番号
