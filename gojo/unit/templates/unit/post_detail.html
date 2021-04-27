@@ -22,6 +22,14 @@
         <h2>納　　期：{{ post.c_date|date:'Y/m/d' }}</h2>
         <h2>購入納期：{{ post.購入納期|date:'Y/m/d' }}</h2>
         <p>{{ post.text|linebreaksbr }}</p>
+        <div class="row">
+            <div class="col-md-1">納期</div>
+            <div class="col-md-4">品名</div>
+            <div class="col-md-1"> 数量</div>
+            <div class="col-md-3">手配先</div>
+            <div class="col-md-1">確認日</div>
+            <div class="col-md-2">備考</div><br>
+        </div>
             {% for minyu in minyus %}
                 <div class="row">
                     <div class="col-md-1">{{ minyu.納期|date:'m/d' }}</div>
