@@ -25,7 +25,7 @@ def post_list(request):
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     o_no = post.o_no
-    minyus = Minyuka.objects.filter(発注番号= post.o_no)
+    minyus = Minyuka.objects.filter(発注番号= post.o_no).order_by('入荷FLG', '納期')
     context = {
         'post': post,
         'minyus': minyus
@@ -90,6 +90,9 @@ def post_publish(request, pk):
 def publish(self):
     self.published_date = timezone.now()
     self.save()
+
+
+
 
 def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
