@@ -18,7 +18,7 @@ class UnitResource(ModelResource):
         model=Post
         import_order = ('p_no', 'o_no', 'c_name', 'c_date', 'text', 'published_date', '購入納期', '出荷日', '手配残')
         import_id_fields = ['p_no']
-        skip_unchanged = False
+        skip_unchanged = True
         
 class UnitAdmin(ImportMixin, admin.ModelAdmin):
     list_display = ('p_no', 'o_no', 'c_name', 'c_date', 'text', 'published_date', '購入納期', '出荷日', '手配残')
@@ -30,7 +30,7 @@ class MinyukaResource(ModelResource):
         model = Minyuka
         inport_order = ('発注番号', '発注先', '納期', '個数', '読込日', '品名', 'mmm', '備考', '入荷FLG')
         import_id_fields = ['mmm']
-        skip_unchanged = False
+        skip_unchanged = True
 
 class MinyukaAdmin(ImportMixin, admin.ModelAdmin):
     list_display = ('発注番号', '発注先', '納期', '個数', '読込日', '品名', 'mmm', '備考', '入荷FLG')
