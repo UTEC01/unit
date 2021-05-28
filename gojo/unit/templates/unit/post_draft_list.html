@@ -1,14 +1,7 @@
 {% extends 'unit/base.html' %}
 
 {% block content %}
-    <form action="" method="get">
-        <p>製作番号:
-            <input  name="query" value="{{ request.GET.query }}" type="text">
-        手配番号:
-            <input  name="query1" value="{{ request.GET.query1 }}" type="text">
-            <button type="submit">検索する</button>
-        </p>
-    </form>
+   
     {% if user.is_authenticated %}
         {% for post in posts %}
             <div class="post">

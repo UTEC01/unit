@@ -14,16 +14,25 @@
             {% else %}
                 <a href="login" >ログイン </a>
             {% endif %}
-            {% if user.is_authenticated %}
-                <a href="{% url 'post_shipped_list' %}" class="top-menu"><span class="glyphicon glyphicon-send"></span></a>
-                <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
+            {% if user.is_authenticated %} 
+                <a href="{% url 'post_shipped_list' %}?query={{ request.GET.query }}&query1={{ request.GET.query1 }}" class="top-menu"><span class="glyphicon glyphicon-send"></span></a>
+                <a href="{% url 'post_draft_list' %}?query={{ request.GET.query }}&query1={{ request.GET.query1 }}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
                 <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-            {% endif %}
+                
+                {% endif %}
 
             <h1><a href="/">U-TEC unit test</a></h1>
 
         </div>
-        <div class="content container">
+                <form action="" method="get">
+                    <p>製作番号:
+                        <input  name="query" value="{{ request.GET.query }}" type="text">
+                       手配番号:
+                        <input  name="query1" value="{{ request.GET.query1 }}" type="text">
+                        <button type="submit">検索する</button>
+                    </p>
+                </form>
+            <div class="content container">
             <div class="row">
                 <div class="col-md-12">
                     {% if user.is_authenticated %}
